@@ -22,20 +22,32 @@ public class ClientRegister {
                 ", private_clients=" + private_clients +
                 '}';
     }
+    
+    
+    public ArrayList<Client> getContactNames() {
 
-    public String getContactNames(){
-        ArrayList<String>contact_names_of_gold = new ArrayList<>();
-        ArrayList<Level> gold = new ArrayList<Level>();
-        for (Level myLevel: gold
-             ) { if(myLevel == Level.GOLD){
-                 contact_names_of_gold.add(String.valueOf(myLevel));
+        ArrayList<Client> contact_names_of_gold = new ArrayList<Client>();
+        for (Corporate_client name : corporate_clients
+        ) {
+            if (name.service_level == Level.GOLD) {
+                contact_names_of_gold.add(name);
 
+            }
 
+            for (Private_client p_name : private_clients
+            ) {
+                if (p_name.service_level == Level.GOLD) {
+                    contact_names_of_gold.add(p_name);
 
+                }
+
+            }
+            
         }
 
-        }
+
+        return contact_names_of_gold;
     }
-
+}
 
 }
