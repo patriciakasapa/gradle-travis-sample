@@ -15,23 +15,27 @@ public class JavaEntry {
         String password = "turntabl";
         try(Connection db = DriverManager.getConnection(url, username, password)){
             Statement s = db.createStatement();
-            ResultSet rs = s.executeQuery("select customer_id from customers");
+            ResultSet rs = s.executeQuery("select * from customers");
+            System.out.println("*********************************************************************************************");
+            System.out.printf("%25s %35s %25s %35s ", "Customer Id", "Company Name", "Contact Name", "contact_title");
+            System.out.println("\n********************************************************************************************************");
+
             while (rs.next()) {
+                System.out.format("%25s %35s %25s %35s %25s %35s %25s %35s",
+                        rs.getString("customer_id"),
+                        rs.getString("company_name"),
+                        rs.getString("contact_name"),
+                        rs.getString("contact_title"),
+                        rs.getString("city"),
+                        rs.getString("region"),
+                        rs.getString("postal_code"),
+                        rs.getString("country"),
+                        rs.getString("phone"),
+                        rs.getString("fax")
 
-                System.out.println(rs.getString("customer_id"));
-                /*System.out.println(rs.getString("company_name"));
-                System.out.println(rs.getString("contact_name"));
-                System.out.println(rs.getString("contact_title"));
-                System.out.println(rs.getString("address"));
-                System.out.println(rs.getString("city"));
-                System.out.println(rs.getString("region"));
-                System.out.println(rs.getString("postal_code"));
-                System.out.println(rs.getString("country"));
-                System.out.println(rs.getString("phone"));
-                System.out.println(rs.getString("fax"));*/
-
+                );
+                System.out.println();
             }
-
         }catch(SQLException sqle){
             System.err.println("Connection err: " + sqle);
         }
