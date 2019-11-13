@@ -17,6 +17,7 @@ public class JavaEntry {
             Statement s = db.createStatement();
             ResultSet rs = s.executeQuery("select customer_id from customers");
             while (rs.next()) {
+
                 System.out.println(rs.getString("customer_id"));
                 /*System.out.println(rs.getString("company_name"));
                 System.out.println(rs.getString("contact_name"));
