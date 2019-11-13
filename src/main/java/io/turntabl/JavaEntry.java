@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class JavaEntry {
     private static Connection connection;
 
-    public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
 
         Class.forName("org.postgresql.Driver");
@@ -82,6 +82,24 @@ public class JavaEntry {
         }catch(SQLException sqle){
             System.err.println("Connection err: " + sqle);
         }
+
+       /* Connection bdb = DriverManager.getConnection(url, username, password);
+
+        PreparedStatement pps = bdb.prepareStatement(
+                "select * from books");
+        try {
+
+            pps.setString(1, "title");
+            pps.setString(2, "author");
+
+            int rows = pps.executeUpdate();
+            if (rows != 1){
+                throw new SQLException("Unexpected error");
+            }
+
+        }catch(SQLException sqle){
+            System.err.println("Connection err: " + sqle);
+        }*/
 
 
 
