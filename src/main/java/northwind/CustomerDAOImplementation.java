@@ -3,7 +3,42 @@ package northwind;
 import java.sql.*;
 
 public class CustomerDAOImplementation implements CustomerDAO {
+    List<ProductTO> allProductsOrdered = new ArrayList<>();
     @Override
+    public showProductNames(String names){
+    //build the connectionstring
+        String url = "jdbc:postgresql:northwind";
+
+
+        String username = "patricia-agyekum";
+        String password = "turntabl";
+        try (Connection conProd = DriverManager.getConnection(url, username, password)) {
+            PreparedStatement prepProd = conProd.prepareStatement(
+                "select products.product_name, products.unit_price from products inner join order_details on products.product_id = order_details.product_id inner join orders on order_details.order_id = orders.order_id inner join customers on orders.customer_id = customers.customer_id where customers.contact_name like ?"
+            );
+            
+            prepProd.clearParameters();
+            prepProd.setString(1, name + '%');
+    
+            ResultSet results = prepProd.executeQuery();
+
+            while (results.next()) {
+                
+                ProductTO products = new ProductTO;
+                (results.getString("product_name"));
+                (results.getString("unit_price"));
+                allProductsOrdered.add(products);
+            }
+            
+            for (ProductTO product : products){
+                System.out.println(products);
+            }
+        
+        }catch (SQLException sqle) {
+            System.err.println("Connection err: " + sqle);
+    
+    }
+   /* @Override
     public AllCustomersTO getCustomersNames() throws ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
 
@@ -34,10 +69,6 @@ public class CustomerDAOImplementation implements CustomerDAO {
         } catch (SQLException sqle) {
             System.err.println("Connection err: " + sqle);
 
-       /* @Override
-    public void showProductNames() {
-
-    }
 
     @Override
     public void showPrices() {
