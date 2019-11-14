@@ -1,11 +1,14 @@
 package northwind;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerDAOImplementation implements CustomerDAO {
     List<ProductTO> allProductsOrdered = new ArrayList<>();
     @Override
-    public showProductNames(String names){
+    public void showProductNames(){
+       String name;
     //build the connectionstring
         String url = "jdbc:postgresql:northwind";
 
@@ -18,22 +21,26 @@ public class CustomerDAOImplementation implements CustomerDAO {
             );
             
             prepProd.clearParameters();
-            prepProd.setString(1, name + '%');
+            prepProd.setString(1, "Contact_name");
     
             ResultSet results = prepProd.executeQuery();
 
             while (results.next()) {
-                
-                ProductTO products = new ProductTO;
-                (results.getString("product_name"));
-                (results.getString("unit_price"));
-                allProductsOrdered.add(products);
+
+
+                System.out.println(results.getString("product_name"));
+                System.out.println(results.getString("unit_price"));
+
             }
-            
-            for (ProductTO product : products){
+
+           /* ProductTO products = new ProductTO("Chang", "2");
+            allProductsOrdered.add(products);
+
+            for (ProductTO product : products) {
                 System.out.println(products);
-            }
-        
+            }*/
+
+
         }catch (SQLException sqle) {
             System.err.println("Connection err: " + sqle);
     
@@ -75,6 +82,6 @@ public class CustomerDAOImplementation implements CustomerDAO {
 
     }*/
         }
-        return null;
+
     }
-}
+

@@ -1,6 +1,6 @@
 package northwind;
 
-public class ProductTO {
+class ProductTO {
     private String product_name;
     private String unit_price;
 
@@ -21,5 +21,6 @@ public class ProductTO {
     @Override
     public String toString() {
         return "product_name: " + product_name + "\n" +
-               "unit_price: " + unit_price;
+                "unit_price: " + unit_price;
     }
+}

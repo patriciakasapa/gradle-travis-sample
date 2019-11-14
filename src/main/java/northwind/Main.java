@@ -5,7 +5,11 @@ import java.util.Scanner;
 public class Main {
     public static void main (String args[]) throws ClassNotFoundException {
         CustomerDAO first = new CustomerDAOImplementation();
-        Scanner sc = new Scanner (System.in);
-        first.getCustomersNames();
+        first.showProductNames();
+
+        ProductDAO pr = new ProductDAOImpl();
+        pr.viewProducts();
+
+
     }
 }

@@ -1,4 +1,4 @@
-vpackage northwind;
+package northwind;
 
 import java.awt.*;
 import java.sql.*;
@@ -10,7 +10,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     List<ProductTO> popularProducts = new ArrayList<>();
     @Override
-    public void showProducts() {
+    public void  viewProducts() {
 
         String url = "jdbc:postgresql:northwind";
         try(Connection database = DriverManager.getConnection(url, "patricia-agyekum",  "turntabl")){
@@ -30,4 +30,5 @@ public class ProductDAOImpl implements ProductDAO {
         }
 
     }
+
 }
