@@ -3,7 +3,7 @@ package northwind;
 import java.util.Scanner;
 
 public class Main {
-    public static void main (String args[]) throws ClassNotFoundException {
+    /*public static void main (String args[]) throws ClassNotFoundException {
         CustomerDAO first = new CustomerDAOImplementation();
         first.showProductNames();
 
@@ -11,5 +11,5 @@ public class Main {
         pr.viewProducts();
 
 
-    }
+    }*/
 }

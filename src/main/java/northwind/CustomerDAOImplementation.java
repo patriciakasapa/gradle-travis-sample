@@ -1,19 +1,41 @@
 package northwind;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import javax.swing.tree.RowMapper;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDAOImplementation implements CustomerDAO {
-    List<ProductTO> allProductsOrdered = new ArrayList<>();
-    @Override
-    public void showProductNames(){
-       String name;
+public class CustomerDAOImplementation {
+   // List<ProductTO> allProductsOrdered = new ArrayList<>();
+
+    public static void main(String args[]){
+
+        RowMapper rowMapper = (RowMapper) BeanPropertyRowMapper.newInstance(AllCustomersTO.class);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+        JdbcTemplate template = (JdbcTemplate) ctx.getBean("JdbcTemplate");
+        AllCustomersTO customer = template.queryForObject(
+                "select * from customers where fname = ?",
+                new Object[],rowMapper);
+
+        public Object mapRow(ResultSet rs, int row) throws SQLException;
+
+
+
+
+
+        //String name;
     //build the connectionstring
-        String url = "jdbc:postgresql:northwind";
+        //String url = "jdbc:postgresql:northwind";
 
 
-        String username = "patricia-agyekum";
+
+
+        /*String username = "patricia-agyekum";
         String password = "turntabl";
         try (Connection conProd = DriverManager.getConnection(url, username, password)) {
             PreparedStatement prepProd = conProd.prepareStatement(
@@ -31,7 +53,7 @@ public class CustomerDAOImplementation implements CustomerDAO {
                 System.out.println(results.getString("product_name"));
                 System.out.println(results.getString("unit_price"));
 
-            }
+            }*/
 
            /* ProductTO products = new ProductTO("Chang", "2");
             allProductsOrdered.add(products);
@@ -41,8 +63,8 @@ public class CustomerDAOImplementation implements CustomerDAO {
             }*/
 
 
-        }catch (SQLException sqle) {
-            System.err.println("Connection err: " + sqle);
+        //}catch (SQLException sqle) {
+          //  System.err.println("Connection err: " + sqle);
     
     }
    /* @Override
@@ -83,5 +105,5 @@ public class CustomerDAOImplementation implements CustomerDAO {
     }*/
         }
 
-    }
+
 
