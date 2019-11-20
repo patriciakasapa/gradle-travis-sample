@@ -6,23 +6,34 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.swing.tree.RowMapper;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDAOImplementation {
-   // List<ProductTO> allProductsOrdered = new ArrayList<>();
+public class CustomerDAOImplementation implements CustomerDAO {
+    // List<ProductTO> allProductsOrdered = new ArrayList<>();
 
-    public static void main(String args[]){
+    @Override
+    public void setJdbcTemplate(JdbcTemplate template) {
+        this.jdbcTemplate = template;
 
-        RowMapper rowMapper = (RowMapper) BeanPropertyRowMapper.newInstance(AllCustomersTO.class);
+    }
+
+    @Override
+    public List<CustomersTO> getCustomerNames(String name) {
+
+
+        RowMapper rowMapper = (RowMapper) BeanPropertyRowMapper.newInstance(CustomersTO.class);
         ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-        JdbcTemplate template = (JdbcTemplate) ctx.getBean("JdbcTemplate");
-        AllCustomersTO customer = template.queryForObject(
+        private JdbcTemplate template = (JdbcTemplate) ctx.getBean("JdbcTemplate");
+        List<CustomersTO> customers = template.queryForObject(
                 "select * from customers where fname = ?",
-                new Object[],rowMapper);
+                new Object[]{name}, rowMapper);
 
-        public Object mapRow(ResultSet rs, int row) throws SQLException;
+        // public Object mapRow (ResultSet rs,int row) throws SQLException;
+
+    }
+    return customers;
+
+}
 
 
 
@@ -66,7 +77,11 @@ public class CustomerDAOImplementation {
         //}catch (SQLException sqle) {
           //  System.err.println("Connection err: " + sqle);
     
-    }
+    //}
+
+
+
+
    /* @Override
     public AllCustomersTO getCustomersNames() throws ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
@@ -103,7 +118,7 @@ public class CustomerDAOImplementation {
     public void showPrices() {
 
     }*/
-        }
+
 
 
 

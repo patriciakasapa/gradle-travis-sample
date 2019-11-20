@@ -2,9 +2,9 @@ package northwind;
 
 class ProductTO {
     private String product_name;
-    private String unit_price;
+    private int unit_price;
 
-    public ProductTO(String product_name, String unit_price) {
+    public ProductTO(String product_name, int unit_price) {
         this.product_name = product_name;
         this.unit_price = unit_price;
     }
@@ -14,7 +14,7 @@ class ProductTO {
         return product_name;
     }
 
-    public String getUnit_price() {
+    public int getUnit_price() {
         return unit_price;
     }
 

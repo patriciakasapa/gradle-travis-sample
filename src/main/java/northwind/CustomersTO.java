@@ -1,16 +1,26 @@
 package northwind;
 
-public class AllCustomersTO {
+public class CustomersTO {
     private String company_name;
     private String contact_name;
     private String contact_title;
     private String address;
 
-    public AllCustomersTO(Integer customer_id, String company_name, String contact_name, String contact_title, String address) {
+    public CustomersTO(Integer customer_id, String company_name, String contact_name, String contact_title, String address) {
         this.company_name = company_name;
         this.contact_name = contact_name;
         this.contact_title = contact_title;
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "AllCustomersTO{" +
+                "company_name='" + company_name + '\'' +
+                ", contact_name='" + contact_name + '\'' +
+                ", contact_title='" + contact_title + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 
     public String getCompany_name() {

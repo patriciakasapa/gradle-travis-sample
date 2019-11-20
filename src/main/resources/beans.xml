@@ -12,7 +12,7 @@
     <bean id="JdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="datasource"/>
     </bean>
-<bean id = "AllCustomersTO" class="northwind.AllCustomersTO">
+<bean id = "AllCustomersTO" class="northwind.CustomersTO">
 
 </bean>
 </beans>
